@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.Goods" >
+    <id column="gid" property="gid" />
+    <result column="gname" property="gname" />
+    <result column="gprice" property="gprice" />
+    <result column="gnum" property="gnum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `goods`
+    where gid = #{gid}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.Goods" useGeneratedKeys="true" keyProperty="gid" >
+    insert into `goods` (gname, gprice, gnum)
+    values (#{gname}, #{gprice}, #{gnum})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.Goods" >
+    update `goods`
+    set gname = #{gname},
+      gprice = #{gprice},
+      gnum = #{gnum}
+    where gid = #{gid}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select gid, gname, gprice, gnum
+    from `goods`
+    where gid = #{gid}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select gid, gname, gprice, gnum
+    from `goods`
+  </select>
+</mapper>

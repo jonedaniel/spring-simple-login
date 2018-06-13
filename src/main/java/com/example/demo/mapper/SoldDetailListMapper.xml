@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.SoldDetailListMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.SoldDetailList" >
+    <result column="sold_detail_id" property="soldDetailId" />
+    <result column="sold_id" property="soldId" />
+    <result column="g_id" property="gId" />
+    <result column="sale_quntity_today" property="saleQuntityToday" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.domain.SoldDetailList" >
+    insert into `sold_detail_list` (sold_detail_id, sold_id, g_id, sale_quntity_today)
+    values (#{soldDetailId}, #{soldId}, #{gId}, #{saleQuntityToday})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select sold_detail_id, sold_id, g_id, sale_quntity_today
+    from `sold_detail_list`
+  </select>
+</mapper>

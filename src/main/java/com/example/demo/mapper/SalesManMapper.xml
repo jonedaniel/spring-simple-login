@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.SalesManMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.domain.SalesMan" >
+    <id column="sid" property="sid" />
+    <result column="spassword" property="spassword" />
+    <result column="sname" property="sname" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `salesman`
+    where sid = #{sid}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.domain.SalesMan" useGeneratedKeys="true" keyProperty="sid" >
+    insert into `salesman` (spassword, sname)
+    values (#{spassword}, #{sname})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.domain.SalesMan" >
+    update `salesman`
+    set spassword = #{spassword},
+      sname = #{sname}
+    where sid = #{sid}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select sid, spassword, sname
+    from `salesman`
+    where sid = #{sid}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select sid, spassword, sname
+    from `salesman`
+  </select>
+  <select id="getSaleManByUsername" resultMap="BaseResultMap">
+    select sid, spassword, sname
+    from `salesman`
+    where sname = #{username}
+  </select>
+</mapper>
